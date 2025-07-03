@@ -1,0 +1,30 @@
+name: workflow variable   #global variable
+on:
+ push:
+env:
+  PYTHON_VERSION: 3.9            #This variable can be use in every job
+  branches:
+   -master
+jobs:
+  job1:
+   runs-on: ubuntu-latest
+   steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Setup python 3.9 ${{ env.PYTHON_VERSION}}
+      uses: actions/setup-python@v5
+      with:
+       python-verion: ${{ env.PYTHON_VERSION}}
+  job2:
+    runs-on: ubuntu-latest
+    env:
+      MYJOB-PYTHON-VERSION: 3.8
+    steps:
+     - name: Checkout Code
+       uses: actions/checkout@v4
+       
+     - name: Setup python 3.8 ${{ env.MYJOB-PYTHON_VERSION}}
+       uses: actions/setup-python@v5
+       with:
+        python-verion: ${{ env.MYJOB-PYTHON_VERSION}}
