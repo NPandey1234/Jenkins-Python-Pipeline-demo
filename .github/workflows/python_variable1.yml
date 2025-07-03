@@ -7,36 +7,32 @@
 # To call the variable use dollar($){{variable_name}}
 
 
-
 name: workflow variable   #global variable
 on:
  push:
- env:
-  PYTHON_VERSION: 3.9            #This variable can be use in every job
-  branches:
-   -master
-
+env:
+   PYTHON_VERSION: 3.9            #This variable can be use in every job
 jobs:
- job1:
- runs-on: ubuntu-latest
- steps:
-  - name: Checkout Code
-    uses: actions/checkout@v4
+  job1:
+   runs-on: ubuntu-latest
+   steps:
+     - name: Checkout Code
+       uses: actions/checkout@v4
 
-  - name: Setup python 3.9 ${{PYTHON_VERSION}}
-    uses: actions/setup-python@v5
-    with:
-      python-verion: ${{PYTHON_VERSION}}
- job2:
-  runs-on: ubuntu-latest
-  steps:
-  - name: Checkout Code
-    uses: actions/checkout@v4
+     - name: Setup python 3.9 ${{PYTHON_VERSION}}
+       uses: actions/setup-python@v5
+       with:
+         python-verion: ${{PYTHON_VERSION}}
+  job2:
+   runs-on: ubuntu-latest
+   steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
 
-  - name: Setup python 3.9 ${{ env.PYTHON_VERSION}}
-    uses: actions/setup-python@v5
-     with:
-      python-verion: ${{ env.PYTHON_VERSION}}
+    - name: Setup python 3.9 ${{ env.PYTHON_VERSION}}
+      uses: actions/setup-python@v5
+      with:
+       python-verion: ${{ env.PYTHON_VERSION}}
 
     
     
