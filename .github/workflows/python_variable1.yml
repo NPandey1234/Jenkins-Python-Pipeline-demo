@@ -1,0 +1,46 @@
+
+# gITHUB Workspace is a enviroment variable/readymade variable of github actions that stores a path of directory where this workflow is getting created,where we have copy the code and install the dependencies
+# When workflow is created on the ubuntu server a home directory will be choosen, that will be the Workspace of this workflow
+# $ = variable
+# | = run multiple command or list of commmand
+# varibale will be created using env variable. varibale will have name and value
+# To call the variable use dollar($){{variable_name}}
+
+
+
+name: workflow variable   #global variable
+on:
+ push:
+ env:
+  PYTHON_VERSION: 3.9            #This variable can be use in every job
+  branches:
+   -master
+
+jobs:
+ job1:
+ runs-on: ubuntu-latest
+ steps:
+  - name: Checkout Code
+    uses: actions/checkout@v4
+
+  - name: Setup python 3.9 ${{PYTHON_VERSION}}
+    uses: actions/setup-python@v5
+    with:
+      python-verion: ${{PYTHON_VERSION}}
+ job2:
+  runs-on: ubuntu-latest
+  steps:
+  - name: Checkout Code
+    uses: actions/checkout@v4
+
+  - name: Setup python 3.9 ${{ env.PYTHON_VERSION}}
+    uses: actions/setup-python@v5
+     with:
+      python-verion: ${{ env.PYTHON_VERSION}}
+
+    
+    
+    
+    
+    
+    
